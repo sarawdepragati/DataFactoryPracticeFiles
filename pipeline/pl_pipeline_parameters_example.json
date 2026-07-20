@@ -1,0 +1,105 @@
+{
+	"name": "pl_pipeline_parameters_example",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data_sourcefiles_targetfiles",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_binary_sourcefiles",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsSourceContainerName": {
+								"value": "@pipeline().parameters.pPlSourceContainerName",
+								"type": "Expression"
+							},
+							"pDsSourceFolderPath": {
+								"value": "@pipeline().parameters.pPlSourceFolderPath",
+								"type": "Expression"
+							},
+							"pDsSourceFileName": {
+								"value": "@pipeline().parameters.pPlSourceFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adls_binary_targetfiles",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsTargetContainerName": {
+								"value": "@pipeline().parameters.pPlTargetContainerName",
+								"type": "Expression"
+							},
+							"pDsTargetFolderPath": {
+								"value": "@pipeline().parameters.pPlTargetFolderPath",
+								"type": "Expression"
+							},
+							"pDsTargetFileName": {
+								"value": "@pipeline().parameters.pPlTargetFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pPlSourceContainerName": {
+				"type": "string"
+			},
+			"pPlSourceFolderPath": {
+				"type": "string"
+			},
+			"pPlSourceFileName": {
+				"type": "string"
+			},
+			"pPlTargetContainerName": {
+				"type": "string"
+			},
+			"pPlTargetFolderPath": {
+				"type": "string"
+			},
+			"pPlTargetFileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Parameters"
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-15T09:13:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

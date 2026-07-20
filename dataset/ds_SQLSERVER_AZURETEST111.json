@@ -1,0 +1,17 @@
+{
+	"name": "ds_SQLSERVER_AZURETEST111",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQLSERVER_AZURETEST111",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "PATIENTS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_sqlserver_raw_tables_1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pTablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().pTablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

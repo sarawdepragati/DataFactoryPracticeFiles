@@ -1,0 +1,17 @@
+{
+	"name": "ds_sqlserver_azuretest11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZURETEST_DATABASE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "encounters11"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

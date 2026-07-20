@@ -1,0 +1,17 @@
+{
+	"name": "ds_healthconnect_azuretest1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_encounters"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

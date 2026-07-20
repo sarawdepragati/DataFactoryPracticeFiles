@@ -1,0 +1,39 @@
+{
+	"name": "pl_lookup_foreach",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_activity",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT\n    TABLE_SCHEMA,\n    TABLE_NAME\nFROM INFORMATION_SCHEMA.TABLES\nWHERE TABLE_TYPE = 'BASE TABLE'\nAND TABLE_NAME NOT LIKE 'spt%'\nAND TABLE_NAME NOT LIKE 'MS%';",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_adls_sqlserver",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"folder": {
+			"name": "For_each_activity"
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-12T06:15:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

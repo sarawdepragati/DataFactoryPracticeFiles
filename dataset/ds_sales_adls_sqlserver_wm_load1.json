@@ -1,0 +1,17 @@
+{
+	"name": "ds_sales_adls_sqlserver_wm_load1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tgt_target"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

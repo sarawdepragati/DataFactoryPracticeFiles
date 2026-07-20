@@ -1,0 +1,65 @@
+{
+	"name": "ds_azure_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "FlightID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Airline",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Destination",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DepartureDateTime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ArrivalDateTime",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Duration_min",
+				"type": "tinyint",
+				"precision": 3
+			},
+			{
+				"name": "Price",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RecordLoadDate",
+				"type": "date"
+			},
+			{
+				"name": "column11",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "RAW",
+			"table": "AirlineData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
