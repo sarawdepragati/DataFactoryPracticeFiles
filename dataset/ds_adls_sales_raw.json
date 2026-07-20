@@ -9,7 +9,10 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": "ind_dm_20260706.csv",
+				"folderPath": "sourceFiles/Sales",
+				"fileSystem": "cr-clintrial"
 			}
 		}
 	},
