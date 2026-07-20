@@ -1,0 +1,92 @@
+{
+	"name": "dataflowjoins",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "ls_azuresql_adls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sourcejoins"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_azuresql_adls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sourcejoin2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_target_files1",
+						"type": "DatasetReference"
+					},
+					"name": "sinkjoinstables",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_adls_gen_2",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          customer_id as integer,",
+				"          customer_name as string,",
+				"          gender as string,",
+				"          city as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'RAW',",
+				"     tableName: 'CUSTOMERS_NEW',",
+				"     isolationLevel: 'READ_COMMITTED') ~> sourcejoins",
+				"source(output(",
+				"          order_id as integer,",
+				"          customer_id as integer,",
+				"          product_name as string,",
+				"          amount as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'RAW',",
+				"     tableName: 'ORDERS_NEW',",
+				"     isolationLevel: 'READ_COMMITTED') ~> sourcejoin2",
+				"sourcejoins, sourcejoin2 join(sourcejoins@customer_id == sourcejoin2@customer_id,",
+				"     joinType:'outer',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"sourcejoin2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          sale_id as string,",
+				"          product as string,",
+				"          category as string,",
+				"          quantity as string,",
+				"          price as string,",
+				"          sale_date as string,",
+				"          region as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkjoinstables"
+			]
+		}
+	}
+}

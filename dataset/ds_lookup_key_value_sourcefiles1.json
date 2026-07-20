@@ -1,0 +1,21 @@
+{
+	"name": "ds_lookup_key_value_sourcefiles1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_gen_2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "key-value-parameter2.json",
+				"folderPath": "lookupFiles",
+				"fileSystem": "cr-clintrial"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

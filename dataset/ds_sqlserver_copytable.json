@@ -1,0 +1,17 @@
+{
+	"name": "ds_sqlserver_copytable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CUSTOMERS_NEW"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,37 @@
+{
+	"name": "pipeline_joins_tables",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow_joins",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflowjoins",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "DataFlowActivity"
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-18T05:31:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

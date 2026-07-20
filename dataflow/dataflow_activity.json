@@ -1,0 +1,80 @@
+{
+	"name": "dataflow_activity",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_adls_patientinfo",
+						"type": "DatasetReference"
+					},
+					"name": "sourcepatientsinfo"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sink_patientdata",
+						"type": "DatasetReference"
+					},
+					"name": "sinkpatientsdata"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filterpatientdata"
+				},
+				{
+					"name": "sortstatecodecitydata"
+				},
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "surrogateKey"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          patient_id as string,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          gender as string,",
+				"          date_of_birth as string,",
+				"          state_code as string,",
+				"          phone as string,",
+				"          city as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false) ~> sourcepatientsinfo",
+				"sourcepatientsinfo filter(gender=='M') ~> filterpatientdata",
+				"filterpatientdata sort(asc(state_code, true),",
+				"     desc(city, true),",
+				"     caseInsensitive: true) ~> sortstatecodecitydata",
+				"sortstatecodecitydata derive(CurrentDateTime = currentTimestamp()) ~> derivedColumn",
+				"derivedColumn keyGenerate(output(pt_sk as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey",
+				"surrogateKey sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          sale_id as string,",
+				"          product as string,",
+				"          category as string,",
+				"          quantity as string,",
+				"          price as string,",
+				"          sale_date as string,",
+				"          region as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkpatientsdata"
+			]
+		}
+	}
+}

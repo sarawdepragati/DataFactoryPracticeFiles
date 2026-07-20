@@ -1,0 +1,17 @@
+{
+	"name": "ds_azuresqldatabase_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "RAW",
+			"table": "CUSTOMERS_NEW"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

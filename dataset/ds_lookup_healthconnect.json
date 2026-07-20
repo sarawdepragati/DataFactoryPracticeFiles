@@ -1,0 +1,13 @@
+{
+	"name": "ds_lookup_healthconnect",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

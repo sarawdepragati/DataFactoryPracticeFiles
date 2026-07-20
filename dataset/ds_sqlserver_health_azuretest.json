@@ -1,0 +1,17 @@
+{
+	"name": "ds_sqlserver_health_azuretest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqlserver_azuretest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_patients"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

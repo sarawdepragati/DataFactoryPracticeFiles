@@ -1,0 +1,46 @@
+{
+	"name": "ds_adls_raw",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "sale_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "product",
+				"type": "nvarchar"
+			},
+			{
+				"name": "category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "quantity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "price",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sale_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "region",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tgt_target"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

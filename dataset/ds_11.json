@@ -1,0 +1,17 @@
+{
+	"name": "ds_11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HEALTHCONNECTRAW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_claims"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "ds_raw_healthconnect_multiple_copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZURETEST_DATABASE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tgt_SALES"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
