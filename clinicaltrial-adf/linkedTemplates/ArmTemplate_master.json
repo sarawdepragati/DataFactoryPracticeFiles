@@ -1,0 +1,456 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "clinicaltrial-adf"
+		},
+		"LS_AZURETEST_DATABASE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_AZURETEST_DATABASE'"
+		},
+		"LS_HEALTHCONNECTRAW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_HEALTHCONNECTRAW'"
+		},
+		"LS_SQLSERVER_AZURETEST111_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQLSERVER_AZURETEST111'"
+		},
+		"ls_adls_gen_2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_gen_2'"
+		},
+		"ls_azuresql_adls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_azuresql_adls'"
+		},
+		"ls_sqlserver_azure_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_azure'"
+		},
+		"ls_sqlserver_azuretest_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_azuretest'"
+		},
+		"ls_sqlserver_azuretest11_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_azuretest11'"
+		},
+		"ls_sqlserver_database_parameter_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_database_parameter'"
+		},
+		"ls_sqlserver_masterdatabase_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserver_masterdatabase'"
+		},
+		"ls_sqlserverlocal_azure_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sqlserverlocal_azure'"
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure_test"
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dev_HealthConnect_raw"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure_test"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_adls_gen_2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stclintrialdev01.dfs.core.windows.net/"
+		},
+		"ls_azuresql_adls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-clintrial-dev01.database.windows.net"
+		},
+		"ls_azuresql_adls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sqldb-clintrial-dev"
+		},
+		"ls_azuresql_adls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "CloudSAfee10f1a"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure_test"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure_test"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Azure_test"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().pLsServerName}"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().pLsDatabaseName}"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adf_login"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "master"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dev_Health_Connect_raw"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adls_gen_2_accountKey": {
+						"value": "[parameters('ls_adls_gen_2_accountKey')]"
+					},
+					"ls_azuresql_adls_password": {
+						"value": "[parameters('ls_azuresql_adls_password')]"
+					},
+					"ls_adls_gen_2_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_gen_2_properties_typeProperties_url')]"
+					},
+					"ls_azuresql_adls_properties_typeProperties_server": {
+						"value": "[parameters('ls_azuresql_adls_properties_typeProperties_server')]"
+					},
+					"ls_azuresql_adls_properties_typeProperties_database": {
+						"value": "[parameters('ls_azuresql_adls_properties_typeProperties_database')]"
+					},
+					"ls_azuresql_adls_properties_typeProperties_userName": {
+						"value": "[parameters('ls_azuresql_adls_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_AZURETEST_DATABASE_password": {
+						"value": "[parameters('LS_AZURETEST_DATABASE_password')]"
+					},
+					"LS_HEALTHCONNECTRAW_password": {
+						"value": "[parameters('LS_HEALTHCONNECTRAW_password')]"
+					},
+					"LS_AZURETEST_DATABASE_properties_typeProperties_server": {
+						"value": "[parameters('LS_AZURETEST_DATABASE_properties_typeProperties_server')]"
+					},
+					"LS_AZURETEST_DATABASE_properties_typeProperties_database": {
+						"value": "[parameters('LS_AZURETEST_DATABASE_properties_typeProperties_database')]"
+					},
+					"LS_AZURETEST_DATABASE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_AZURETEST_DATABASE_properties_typeProperties_userName')]"
+					},
+					"LS_HEALTHCONNECTRAW_properties_typeProperties_server": {
+						"value": "[parameters('LS_HEALTHCONNECTRAW_properties_typeProperties_server')]"
+					},
+					"LS_HEALTHCONNECTRAW_properties_typeProperties_database": {
+						"value": "[parameters('LS_HEALTHCONNECTRAW_properties_typeProperties_database')]"
+					},
+					"LS_HEALTHCONNECTRAW_properties_typeProperties_userName": {
+						"value": "[parameters('LS_HEALTHCONNECTRAW_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_SQLSERVER_AZURETEST111_password": {
+						"value": "[parameters('LS_SQLSERVER_AZURETEST111_password')]"
+					},
+					"ls_sqlserver_azure_password": {
+						"value": "[parameters('ls_sqlserver_azure_password')]"
+					},
+					"ls_sqlserver_azuretest_password": {
+						"value": "[parameters('ls_sqlserver_azuretest_password')]"
+					},
+					"ls_sqlserver_azuretest11_password": {
+						"value": "[parameters('ls_sqlserver_azuretest11_password')]"
+					},
+					"ls_sqlserver_database_parameter_password": {
+						"value": "[parameters('ls_sqlserver_database_parameter_password')]"
+					},
+					"ls_sqlserver_masterdatabase_password": {
+						"value": "[parameters('ls_sqlserver_masterdatabase_password')]"
+					},
+					"ls_sqlserverlocal_azure_password": {
+						"value": "[parameters('ls_sqlserverlocal_azure_password')]"
+					},
+					"LS_SQLSERVER_AZURETEST111_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLSERVER_AZURETEST111_properties_typeProperties_server')]"
+					},
+					"LS_SQLSERVER_AZURETEST111_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLSERVER_AZURETEST111_properties_typeProperties_database')]"
+					},
+					"LS_SQLSERVER_AZURETEST111_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLSERVER_AZURETEST111_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_azure_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_azure_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_azure_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_azure_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_azure_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_azure_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_azuretest_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_azuretest_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_azuretest_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_azuretest_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_azuretest_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_azuretest_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_azuretest11_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_azuretest11_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_azuretest11_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_azuretest11_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_azuretest11_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_azuretest11_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_database_parameter_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_database_parameter_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_database_parameter_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_database_parameter_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_database_parameter_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_database_parameter_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserver_masterdatabase_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserver_masterdatabase_properties_typeProperties_server')]"
+					},
+					"ls_sqlserver_masterdatabase_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserver_masterdatabase_properties_typeProperties_database')]"
+					},
+					"ls_sqlserver_masterdatabase_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserver_masterdatabase_properties_typeProperties_userName')]"
+					},
+					"ls_sqlserverlocal_azure_properties_typeProperties_server": {
+						"value": "[parameters('ls_sqlserverlocal_azure_properties_typeProperties_server')]"
+					},
+					"ls_sqlserverlocal_azure_properties_typeProperties_database": {
+						"value": "[parameters('ls_sqlserverlocal_azure_properties_typeProperties_database')]"
+					},
+					"ls_sqlserverlocal_azure_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sqlserverlocal_azure_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "clinicaltrial-adf_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'clinicaltrial-adf_ArmTemplate_5')]"
+			]
+		}
+	]
+}

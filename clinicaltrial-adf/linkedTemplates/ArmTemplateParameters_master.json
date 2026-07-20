@@ -1,0 +1,141 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "clinicaltrial-adf"
+		},
+		"LS_AZURETEST_DATABASE_password": {
+			"value": ""
+		},
+		"LS_HEALTHCONNECTRAW_password": {
+			"value": ""
+		},
+		"LS_SQLSERVER_AZURETEST111_password": {
+			"value": ""
+		},
+		"ls_adls_gen_2_accountKey": {
+			"value": ""
+		},
+		"ls_azuresql_adls_password": {
+			"value": ""
+		},
+		"ls_sqlserver_azure_password": {
+			"value": ""
+		},
+		"ls_sqlserver_azuretest_password": {
+			"value": ""
+		},
+		"ls_sqlserver_azuretest11_password": {
+			"value": ""
+		},
+		"ls_sqlserver_database_parameter_password": {
+			"value": ""
+		},
+		"ls_sqlserver_masterdatabase_password": {
+			"value": ""
+		},
+		"ls_sqlserverlocal_azure_password": {
+			"value": ""
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_database": {
+			"value": "Azure_test"
+		},
+		"LS_AZURETEST_DATABASE_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_database": {
+			"value": "dev_HealthConnect_raw"
+		},
+		"LS_HEALTHCONNECTRAW_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_database": {
+			"value": "Azure_test"
+		},
+		"LS_SQLSERVER_AZURETEST111_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_adls_gen_2_properties_typeProperties_url": {
+			"value": "https://stclintrialdev01.dfs.core.windows.net/"
+		},
+		"ls_azuresql_adls_properties_typeProperties_server": {
+			"value": "sql-clintrial-dev01.database.windows.net"
+		},
+		"ls_azuresql_adls_properties_typeProperties_database": {
+			"value": "sqldb-clintrial-dev"
+		},
+		"ls_azuresql_adls_properties_typeProperties_userName": {
+			"value": "CloudSAfee10f1a"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_database": {
+			"value": "Azure_test"
+		},
+		"ls_sqlserver_azure_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_database": {
+			"value": "Azure_test"
+		},
+		"ls_sqlserver_azuretest_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_database": {
+			"value": "Azure_test"
+		},
+		"ls_sqlserver_azuretest11_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_server": {
+			"value": "@{linkedService().pLsServerName}"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_database": {
+			"value": "@{linkedService().pLsDatabaseName}"
+		},
+		"ls_sqlserver_database_parameter_properties_typeProperties_userName": {
+			"value": "adf_login"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_database": {
+			"value": "master"
+		},
+		"ls_sqlserver_masterdatabase_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_database": {
+			"value": "dev_Health_Connect_raw"
+		},
+		"ls_sqlserverlocal_azure_properties_typeProperties_userName": {
+			"value": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
