@@ -25,7 +25,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"pDsServerName": "localhost\\SQLEXPRESS",
-							"pDsDatabaseName": "dev_clintrial_edc_src",
+							"pDsDatabaseName": "dev_clintrail_edc_src",
 							"pDsSchemaName": "edcsrcmetadata",
 							"pDsTableName": "srcEdcClintrailToLandControl"
 						}
@@ -92,8 +92,60 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": false
-							}
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SqlServerTable2",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServerName": {
+											"value": "@item().SrcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Parquet1",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsContainerName": {
+											"value": "@item().LandingContainerName",
+											"type": "Expression"
+										},
+										"pDsFolderName": {
+											"value": "@concat(item().SrcSchemaName,'/',item().SrcTableName,'/\r\ningest_date=',formatDateTime(utcNow(),'yyyy-mm-dd'))",
+											"type": "Expression"
+										},
+										"pDsFileName": {
+											"value": "@concat(item().SrcTableName,'-',formatDateTime(utcNow(),'yyyymmddHHmmss'),'.parquet')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						},
 						{
 							"name": "LookupGetMaxMetaData",
@@ -124,6 +176,28 @@
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
+								"dataset": {
+									"referenceName": "SqlServerTable2",
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServerName": {
+											"value": "@item().SrcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
+									}
+								},
 								"firstRowOnly": true
 							}
 						},
@@ -147,7 +221,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[edcsrcmetadata].[usp_UpdateMxWatermark]",
 								"storedProcedureParameters": {
 									"MetadataId": {
 										"value": {
@@ -162,6 +235,20 @@
 											"type": "Expression"
 										},
 										"type": "DateTime"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_sqlserver_param",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"pLsServerName": {
+										"value": "@item().SrcServerName",
+										"type": "Expression"
+									},
+									"pLsDatabasename": {
+										"value": "@item().SrcDatabaseName",
+										"type": "Expression"
 									}
 								}
 							}
