@@ -17,7 +17,7 @@
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE",
+			"userName": "adf_login",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
