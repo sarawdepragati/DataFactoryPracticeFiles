@@ -1,0 +1,35 @@
+{
+	"name": "ls_sqlserver_param",
+	"properties": {
+		"parameters": {
+			"pLsServerName": {
+				"type": "string"
+			},
+			"pLsDatabasename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "@{linkedService().pLsServerName}",
+			"database": "@{linkedService().pLsDatabasename}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "DESKTOP-6IUJ1T8\\PRAGATI SARAWDE",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault_clintrial",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SqlPassword"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
