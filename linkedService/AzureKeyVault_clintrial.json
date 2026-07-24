@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVault_clintrial",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://clinicaltrial-kv.vault.azure.net/"
+		}
+	}
+}
