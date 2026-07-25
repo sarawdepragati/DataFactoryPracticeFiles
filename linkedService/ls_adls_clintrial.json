@@ -1,0 +1,19 @@
+{
+	"name": "ls_adls_clintrial",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-7405619742718923.3.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault_clintrial",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "DatabricksPAT"
+			},
+			"existingClusterId": "0723-093812-nenpf9uj"
+		}
+	}
+}
