@@ -32,6 +32,73 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach_Landing_File",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Bronze_Control_Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_Bronze_Control_Table').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Notebook_Landing_Bronze",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Users/sarawdepragati1969@gmail.com/intellBI_databricks_clintrial/landing_bronze_load/nb_landing_bronze_load",
+								"baseParameters": {
+									"domain": {
+										"value": "@item().Domain",
+										"type": "Expression"
+									},
+									"storageAccName": {
+										"value": "@item().StorageAccName",
+										"type": "Expression"
+									},
+									"srcContainerName": {
+										"value": "@item().srcContainerName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().tgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().tgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().tgtTableName",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_adls_clintrial",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
 			}
 		],
 		"folder": {
