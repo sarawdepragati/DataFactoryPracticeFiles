@@ -48,6 +48,82 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach_silver_gold",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_silver_gold",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_silver_gold').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Notebook_silver_gold_dimension",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 3,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Users/sarawdepragati1969@gmail.com/intellBI_databricks_clintrial/silver_gold_load/nb_gold_dimensions",
+								"baseParameters": {
+									"srcCatalog": {
+										"value": "@item().srcCatalog",
+										"type": "Expression"
+									},
+									"srcSchema": {
+										"value": "@item().srcSchema",
+										"type": "Expression"
+									},
+									"srcTableName": {
+										"value": "@item().srcTableName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().tgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().tgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().tgtTableName",
+										"type": "Expression"
+									},
+									"scdType": {
+										"value": "@item().scdType",
+										"type": "Expression"
+									},
+									"businessKey": {
+										"value": "@item().BusinessKey",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_adls_clintrial",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
